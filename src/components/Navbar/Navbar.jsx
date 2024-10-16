@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Logo from "./Logo";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 
@@ -8,13 +7,20 @@ export default function Navbar() {
       <Logo />
 
       <div>
-        {/* När användaren är inloggad */}
         <SignedIn>
-          <div className="flex items-center space-x-4">
-            <UserButton />
+          <div className="flex items-center space-x-4 border border-green-600 rounded-full ">
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10", 
+                  userButtonTrigger: "bg-transparent", 
+                },
+              }}
+              afterSignOutUrl="/" 
+            />
           </div>
         </SignedIn>
-        
+
         <SignedOut>
           <SignInButton>
             <span className="mx-4 text-xl text-green-600 cursor-pointer">
