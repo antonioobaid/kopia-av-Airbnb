@@ -68,7 +68,9 @@ function SearchBoende() {
             />
             <p className="mt-2 text-lg font-semibold">{boende.title}</p>
             <p>{boende.location}</p>
-            <p>{boende.price} kr per natt</p>
+            <p className="underline">{boende.price} SEK per natt</p>
+            <p className="underline"> {boende.månadshyra} SEK per månad</p>
+
           </div>
         ))}
       </div>
