@@ -71,7 +71,7 @@ function Home() {
     <div className="relative">
   <section className="flex flex-col lg:flex-row justify-between items-center mt-10 lg:mx-24 space-y-10 lg:space-y-0">
     <div className="bg-white p-4 border border-green-600 rounded-md lg:w-1/2 z-10 lg:mt-0 mt-6 absolute md:relative md:z-auto md:mt-0 top-10 max-w-xs md:max-w-sm 
-    h-auto  md:h-auto lg:h-96 flex flex-col space-y-4"> 
+    h-auto  md:h-auto  flex flex-col space-y-4"> 
       <h1 className=" sm:text-2xl font-bold text-black sm:mb-2">Hitta boenden på Airbnb</h1>
       <p className="text-sm sm:text-base mb-4 text-gray-700">Upptäck hela boenden och rum som är perfekta för alla resor.</p>  
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -135,7 +135,7 @@ function Home() {
       </form>
     </div>
 
-    <div className="hidden lg:block w-full lg:w-1/2">
+    <div className="hidden lg:block w-full lg:w-1/2 ">
       {mainImageUrl && (
         <Image
           src={mainImageUrl}

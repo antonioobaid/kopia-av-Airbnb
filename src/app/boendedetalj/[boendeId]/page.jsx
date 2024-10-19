@@ -4,11 +4,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 import Image from "next/image";
 import { db, storage } from "../../../../firebase/config";
+import { useRouter } from "next/navigation";
+
 
 const BoendeDetalj = ({ params }) => {
   const [boende, setBoende] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
   const { boendeId } = params; // Få boende ID från params
+  const router = useRouter()
 
   // Hämta boendeinformation från Firestore baserat på boendeId
   useEffect(() => {
@@ -41,6 +44,10 @@ const BoendeDetalj = ({ params }) => {
   if (!boende || imageUrls.length === 0) {
     return <div>Loading...</div>;
   }
+
+  const BetalningPage = () => {
+    router.push("/betalningsidan/"); 
+  };
 
   return (
     <div className="mt-10">
@@ -101,7 +108,9 @@ const BoendeDetalj = ({ params }) => {
           </div>
 
           <div className="flex justify-center mt-2">
-            <button className="bg-green-600 rounded-sm p-2 w-32">Boka nu</button>
+            <button className="bg-green-600 rounded-sm p-2 w-32"
+            onClick={BetalningPage}
+            >Boka nu</button>
           </div>
         </div>
       </section>
