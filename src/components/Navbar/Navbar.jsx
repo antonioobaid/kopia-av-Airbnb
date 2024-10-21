@@ -4,11 +4,21 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 export default function Navbar() {
   return (
     <div className="flex justify-between items-center p-6 border border-green-600 shadow-md text-black">
-      <Logo />
+    
+      <div className="hidden sm:block">
+        <Logo />
+      </div>
 
-      <div>
+      
+      <div className="sm:hidden w-full text-center">
+        <Logo />
+      </div>
+
+      <div className="hidden sm:flex  space-x-4">
+      
         <SignedIn>
-          <div className="flex items-center space-x-4 border border-green-600 rounded-full ">
+          <div className="hidden sm:flex items-center  space-x-4 border border-green-600 rounded-full">
+            
             <UserButton
               appearance={{
                 elements: {
@@ -21,9 +31,10 @@ export default function Navbar() {
           </div>
         </SignedIn>
 
+       
         <SignedOut>
           <SignInButton>
-            <span className="mx-4 text-xl text-green-600 cursor-pointer">
+            <span className=" mx-4 text-xl text-green-600 cursor-pointer hidden sm:block">
               Bli medlem
             </span>
           </SignInButton>
