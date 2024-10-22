@@ -1,30 +1,35 @@
-
+"use client"
 import Logo from "./Logo";
-import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // För ikonen
-import { faBars } from "@fortawesome/free-solid-svg-icons"; // Hamburgerikon
+import { SignedIn, SignedOut, UserButton, SignInButton, useClerk } from "@clerk/nextjs";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from "@fortawesome/free-solid-svg-icons"; 
 
 
 export default function Navbar() {
+  const { openSignIn } = useClerk(); 
+
+  // Funktion för att öppna modalen
+  const handleSignInClick = () => {
+    openSignIn();
+  };
 
   return (
-    <div className="flex justify-between items-center p-6 border border-b-2 border-green-600  text-black">
-      {/* Logo för desktop */}
+    <div className="flex justify-between items-center p-6 border border-b-2 border-green-600 text-black">
+      
       <div className="hidden sm:block">
         <Logo />
       </div>
 
-      {/* Logo för mobil, centrerad */}
+      
       <div className="sm:hidden w-full text-center">
         <Logo />
       </div>
 
-      {/* Gradient bakgrund för mobil */}
+     
       <div className="block sm:hidden w-full h-20 bg-gradient-to-r from-[#56953F] to-[#303030] absolute top-0 left-0 z-[-1]"></div>
 
-      {/* Meny för inloggade användare */}
       <div className="hidden sm:flex space-x-4 ">
-        <SignedIn>
+        <SignedIn >
           <div className="relative flex items-center space-x-4 border bg-green-600 border-black rounded-full px-4 py-1">
             <FontAwesomeIcon 
               icon={faBars} 
@@ -34,7 +39,7 @@ export default function Navbar() {
               appearance={{
                 elements: {
                   avatarBox: "w-12 h-12", 
-                  userButtonTrigger: "bg-transparent", 
+                  userButtonTrigger: "bg-transparent",
                 },
               }}
               afterSignOutUrl="/" 
@@ -42,16 +47,17 @@ export default function Navbar() {
           </div>
         </SignedIn>
 
-        {/* "Bli medlem"-knapp för utloggade användare */}
+      
         <SignedOut>
-          <SignInButton>
-            <span className="mx-4 text-xl text-green-600 cursor-pointer hidden sm:block">
-              Bli medlem
-            </span>
-          </SignInButton>
-        </SignedOut>
+          <button onClick={handleSignInClick} className="mx-4 text-xl text-green-600 cursor-pointer hidden sm:block
+          bg-green-100 hover:bg-green-200 rounded-lg px-2 py-1 transition duration-300 ">
+            Bli medlem
+          </button>
+        </SignedOut> 
       </div>
     </div>
   );
 }
+
+
 
