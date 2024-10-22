@@ -1,6 +1,6 @@
 "use client"
 import Logo from "./Logo";
-import { SignedIn, SignedOut, UserButton, SignInButton, useClerk } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton , useClerk } from "@clerk/nextjs";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from "@fortawesome/free-solid-svg-icons"; 
 

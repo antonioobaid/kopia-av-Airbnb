@@ -1,11 +1,19 @@
-
-import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons'; // Korrekt brand icons
-import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
-import Link from 'next/link'; // Importera Next.js Link
+"use client"
+import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { SignedIn, SignedOut, UserButton, useClerk } from "@clerk/nextjs"; 
+import Link from 'next/link'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 
+
 export default function Footer() {
+  const { openSignIn } = useClerk(); // Använd useClerk för att öppna inloggningsmodalet
+
+  // Funktion för att öppna modal
+  const handleSignInClick = () => {
+    openSignIn();
+  };
+
   return (
     <footer className="bg-gray-800 border-t-2 border-green-600 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -29,17 +37,16 @@ export default function Footer() {
 
       <div className="lg:hidden flex justify-between items-center w-full">
        
-        <div className=" sm:hidden flex flex-col justify-center items-center gap-1">
-          <Link href="/" className="text-white" >
+        <div className="sm:hidden flex flex-col justify-center items-center gap-1">
+          <Link href="/" className="text-white">
               <FontAwesomeIcon icon={faSearch} className="w-6 h-6" />
           </Link>
           <h1>Explore</h1>
         </div>
 
-      
-        <div className="flex items-center ">  
+        <div className="flex items-center">  
           <SignedIn>
-            <div className="sm:hidden flex flex-col justify-center items-center  gap-1 ">
+            <div className="sm:hidden flex flex-col justify-center items-center gap-1">
               <UserButton
                 appearance={{
                   elements: {
@@ -49,23 +56,20 @@ export default function Footer() {
                 }}
                 afterSignOutUrl="/"
               />
-            <h1>Inloggat</h1>
+              <h1>Inloggat</h1>
             </div>
-            
           </SignedIn>
 
-          
           <SignedOut>
-            <SignInButton>
-              <span className="mx-4 cursor-pointer sm:hidden flex flex-col justify-center items-center gap-2">
-                <FontAwesomeIcon icon={faUser} className="w-6 h-6" />
-                <span className="text-xs">Logga in</span>
-              </span>
-            </SignInButton>
+            <button onClick={handleSignInClick} className="mx-4 cursor-pointer sm:hidden flex flex-col justify-center items-center gap-2">
+              <FontAwesomeIcon icon={faUser} className="w-6 h-6" />
+              <span className="text-xs">Logga in</span>
+            </button>
           </SignedOut>
         </div>
       </div>
     </footer>
   );
 }
+
 
