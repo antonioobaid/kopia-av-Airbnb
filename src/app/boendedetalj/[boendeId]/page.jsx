@@ -61,8 +61,8 @@ const BoendeDetalj = ({ params }) => {
                 <Image
                   src={imageUrls[0]}
                   alt={boende.title}
-                  width={800}
-                  height={800}
+                  width={750}
+                  height={750}
                   className="rounded-lg object-cover"
                 />
               )}
@@ -77,7 +77,7 @@ const BoendeDetalj = ({ params }) => {
             </div>
           </div>
 
-          <div className="flex flex-col mt-14 ml-8 gap-7  ">
+          <div className="flex flex-col mt-14 ml-5 gap-4  ">
             {/* Visa resterande 3 bilder som små bredvid den stora */}
             {imageUrls.slice(1).map((url, index) => (
               <div key={index}>
