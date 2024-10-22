@@ -4,7 +4,9 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // För ikonen
 import { faBars } from "@fortawesome/free-solid-svg-icons"; // Hamburgerikon
 
+
 export default function Navbar() {
+
   return (
     <div className="flex justify-between items-center p-6 border border-b-2 border-green-600  text-black">
       {/* Logo för desktop */}
