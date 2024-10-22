@@ -81,7 +81,6 @@ const BoendeDetalj = ({ params }) => {
                       height={750}
                       priority={true} // Lägg till detta om den är ovanför "the fold"
                       loading="eager"
-                      unoptimized={true}
                       className="rounded-lg mx-3 object-cover 
                                  sm:w-auto sm:h-auto
                                  w-[300px] h-[300px] " 
@@ -148,9 +147,7 @@ const BoendeDetalj = ({ params }) => {
             {boende.area}. Rymmer upp till {boende.adults} personer
           </p>
           <p className="text-xl md:text-2xl">
-            Luta dig tillbaka i fåtöljen med en bok, eller koppla av i sängen
-            framför TV:n. Du kan använda skrivbordet om du behöver få lite
-            arbete gjort.
+          {boende.description}
           </p>
           <p className="mt-11 text-xl md:text-2xl mb-6">Detta rum är utrustat med:</p>
         </div>
