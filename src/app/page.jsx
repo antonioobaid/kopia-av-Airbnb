@@ -142,6 +142,9 @@ function Home() {
           alt="Hus"
           width={700}
           height={700}
+          priority={true} // Lägg till detta för att ge bilden hög prioritet
+          loading="eager"
+          unoptimized={true}
           className="rounded-md shadow-lg object-cover w-full h-auto"
         />
       )}
@@ -177,6 +180,9 @@ function Home() {
             alt={boende.title}
             width={400}
             height={300}
+            priority={true} // Lägg till detta om den är ovanför "the fold"
+            loading="eager"
+            unoptimized={true}
             className="rounded-lg object-cover w-full h-auto"
           />
           <p className="mt-3 text-white text-2xl">{boende.title}</p>

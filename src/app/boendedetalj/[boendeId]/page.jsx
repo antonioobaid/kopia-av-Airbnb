@@ -79,6 +79,9 @@ const BoendeDetalj = ({ params }) => {
                       alt={boende.title}
                       width={750}
                       height={750}
+                      priority={true} // Lägg till detta om den är ovanför "the fold"
+                      loading="eager"
+                      unoptimized={true}
                       className="rounded-lg mx-3 object-cover 
                                  sm:w-auto sm:h-auto
                                  w-[300px] h-[300px] " 

@@ -642,12 +642,12 @@ export default function BetalningPage({ params }) {
               }`}
             >
               <Image
-                src="/images/klarna.avif"
+                src="/images/klarna1.png"
                 alt="Klarna"
                 width={60}
                 height={60}
                 className="object-contain"
-                
+                style={{ width: "auto", height: "auto" }}
                 priority
                 
               />

@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ['firebasestorage.googleapis.com'], // Lägg till Firebase Storage domänen här
-    },
-  };
-  
-  export default nextConfig;
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        pathname: '/**', // Tillåt alla sökvägar under Firebase Storage-domänen
+      },
+    ],
+  },
+};
+
+export default nextConfig;
