@@ -124,7 +124,7 @@ const BoendeDetalj = ({ params }) => {
             <p className="text-2xl">{boende.title}</p>
             <p>Stad: {boende.location}</p>
             <p>Lägenhetsyta: {boende.area}</p>
-            <p>Datum: 1 Sep till 31 dec</p>
+            <p> Tillgängligt datum: {boende.date}</p>
             <p>Antal gäster: {boende.adults}</p>
             <p>Daglig Pris: {boende.price} SEK per natt</p>
             <p>månadshyra: {boende.månadshyra} SEK månad</p>
