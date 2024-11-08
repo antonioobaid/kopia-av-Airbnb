@@ -120,21 +120,21 @@ export default function BetalningPage({ params }) {
             </div>
 
             <div
-              onClick={() => handlePaymentSelect("Swish")}
+              onClick={() => handlePaymentSelect("PayPal")}
               className={`flex items-center justify-center gap-4 p-4 border rounded-lg cursor-pointer hover:shadow-lg transition duration-300 ${
-                selectedPayment === "Swish" ? "border-green-500" : ""
+                selectedPayment === "PayPal" ? "border-green-500" : ""
               }`}
             >
               <Image
-                src="/images/swich.webp"
-                alt="Swish"
+                src="/images/NEU_PayPal.png"
+                alt="PayPal"
                 width={60}
                 height={50}
                 className="object-contain"
                 style={{ width: "auto", height: "auto" }}
                 priority
               />
-              <p className="mt-2 text-center font-bold text-sm sm:text-base text-white">Swish</p>
+              <p className="mt-2 text-center font-bold text-sm sm:text-base text-white">PayPal</p>
             </div>
         
             <div
