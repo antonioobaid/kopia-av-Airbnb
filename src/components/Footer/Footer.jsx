@@ -5,19 +5,15 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 
-
 export default function Footer() {
-  const { openSignIn } = useClerk(); // Använd useClerk för att öppna inloggningsmodalet
-
-  // Funktion för att öppna modal
+  const { openSignIn } = useClerk(); 
   const handleSignInClick = () => {
     openSignIn();
   };
 
   return (
     <footer className="bg-gray-800 border-t-2 border-green-600 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        
+      <div className="container mx-auto flex justify-between items-center">    
         <p className="hidden sm:block text-sm">
           &copy; {new Date().getFullYear()} Your Company. All rights reserved.
         </p>
@@ -36,14 +32,12 @@ export default function Footer() {
       </div>
 
       <div className="lg:hidden flex justify-between items-center w-full">
-       
         <div className="sm:hidden flex flex-col justify-center items-center gap-1">
           <Link href="/" className="text-white">
               <FontAwesomeIcon icon={faSearch} className="w-6 h-6" />
           </Link>
           <h1>Explore</h1>
         </div>
-
         <div className="flex items-center">  
           <SignedIn>
             <div className="sm:hidden flex flex-col justify-center items-center gap-1">
@@ -59,7 +53,6 @@ export default function Footer() {
               <h1>Inloggat</h1>
             </div>
           </SignedIn>
-
           <SignedOut>
             <button onClick={handleSignInClick} className="mx-4 cursor-pointer sm:hidden flex flex-col justify-center items-center gap-2">
               <FontAwesomeIcon icon={faUser} className="w-6 h-6" />

@@ -7,7 +7,6 @@ import { db, storage } from "../../../../../firebase/config";
 export default function Betalt({ params }) {
   const { boendeId } = params; // Hämta boendeId från URL:en
   const [firstImageUrl, setFirstImageUrl] = useState(null);
-
   useEffect(() => {
     const fetchFirstImage = async () => {
       if (boendeId) {
@@ -20,7 +19,7 @@ export default function Betalt({ params }) {
           if (boendeData.images && boendeData.images.length > 0) {
             const firstImageRef = ref(storage, boendeData.images[0]);
             const firstImageUrl = await getDownloadURL(firstImageRef);
-            console.log("Image URL:", firstImageUrl); // Logga URL för bilden
+            console.log("Image URL:", firstImageUrl); 
             setFirstImageUrl(firstImageUrl);
           } else {
             console.error("Inga bilder tillgängliga!");
@@ -30,14 +29,12 @@ export default function Betalt({ params }) {
         }
       }
     };
-
     fetchFirstImage();
   }, [boendeId]);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg w-full sm:w-4/5 md:w-3/4 lg:w-1/2 xl:w-2/5">
-        
         {firstImageUrl && (
           <div className="mb-6">
             <img
@@ -57,7 +54,6 @@ export default function Betalt({ params }) {
         <p className="text-center text-green-500 text-sm sm:text-base mb-6">
           Du kommer att få en bekräftelse via e-post inom kort.
         </p>
-
         <div className="flex justify-center">
           <button
             onClick={() => (window.location.href = "/")}

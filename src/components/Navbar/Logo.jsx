@@ -1,10 +1,9 @@
 import { Molle } from "next/font/google";
 import Link from "next/link";
 
-// Importera typsnittet från Google Fonts
 const molle = Molle({
-  weight: "400", // Molle finns i 400 vikt (regular)
-  subsets: ["latin"], // Välj subset beroende på vilka tecken du behöver
+  weight: "400",
+  subsets: ["latin"],
 });
 
 export default function Logo() {

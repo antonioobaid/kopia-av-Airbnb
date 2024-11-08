@@ -1,52 +1,43 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation"; // För att hämta query params och navigera
+import { useSearchParams, useRouter } from "next/navigation";
 import { collection, getDocs } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
-import { db, storage } from "../../../firebase/config"; // Importera både Firestore och Storage
-
+import { db, storage } from "../../../firebase/config"; 
 function SearchBoende() {
   const [filteredBoenden, setFilteredBoenden] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [imageUrls, setImageUrls] = useState([]); // För att lagra URL:er för bilder
-
+  const [imageUrls, setImageUrls] = useState([]); 
   const searchParams = useSearchParams(); // Hämta query params från URL
   const location = searchParams.get("location");
-  const router = useRouter(); // Lägg till useRouter för navigation
+  const router = useRouter(); 
 
   useEffect(() => {
     const fetchBoenden = async () => {
       const boendeCollection = collection(db, "boende");
       const boendeSnapshot = await getDocs(boendeCollection);
-
       const boendeList = boendeSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-
-      // Filtrera boenden baserat på location
+      
       const filtered = boendeList.filter((boende) => boende.location === location);
 
       if (filtered.length === 0) {
         setErrorMessage("Inga boenden matchar platsen.");
       } else {
-        setErrorMessage(""); // Nollställ felmeddelande om boenden hittas
-
-        // Hämta bild-URL:erna från Firebase Storage för varje boende
-        const imageRefs = filtered.map((boende) => ref(storage, boende.image)); // Skapa referenser för bilder
-        const urls = await Promise.all(imageRefs.map((imageRef) => getDownloadURL(imageRef))); // Hämta URL:erna
-
-        setImageUrls(urls); // Spara URL:erna för att visa bilderna
-        setFilteredBoenden(filtered); // Spara filtrerade boenden
+        setErrorMessage(""); 
+        const imageRefs = filtered.map((boende) => ref(storage, boende.image)); 
+        const urls = await Promise.all(imageRefs.map((imageRef) => getDownloadURL(imageRef)));
+        setImageUrls(urls); 
+        setFilteredBoenden(filtered); 
       }
     };
-
     fetchBoenden();
   }, [location]);
 
-  // Funktion för att navigera till boendets detaljsida
   const navigateToDetails = (boendeId) => {
-    router.push(`/boendedetalj/${boendeId}`); // Navigera till boende detaljsida med ID
+    router.push(`/boendedetalj/${boendeId}`); 
   };
 
   return (
@@ -58,9 +49,8 @@ function SearchBoende() {
           <div 
             key={boende.id} 
             className="text-center cursor-pointer" 
-            onClick={() => navigateToDetails(boende.id)} // Lägg till onClick som navigerar med boende ID
+            onClick={() => navigateToDetails(boende.id)} 
           >
-            {/* Visa bild från Firebase Storage */}
             <img 
               src={imageUrls[index]} 
               alt={boende.title} 

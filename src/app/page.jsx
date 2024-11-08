@@ -21,7 +21,6 @@ function Home() {
     const fetchBoende = async () => {
       const boendeCollection = collection(db, "boende");
       const boendeSnapshot = await getDocs(boendeCollection);
-
       const boendeList = boendeSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -29,14 +28,12 @@ function Home() {
 
       const imageRefs = boendeList.map((boende) => ref(storage, boende.image));
       const imageUrls = await Promise.all(imageRefs.map((imageRef) => getDownloadURL(imageRef)));
-
       setBoende(boendeList);
       setImageUrls(imageUrls);
     };
 
     const fetchMainImage = async () => {
-      // Hämta huvudbildens URL från Firebase Storage
-      const mainImageRef = ref(storage, "images/lägenhet1.webp"); // Här kan du byta till rätt sökväg för huvudbilden
+      const mainImageRef = ref(storage, "images/lägenhet1.webp"); 
       const url = await getDownloadURL(mainImageRef);
       setMainImageUrl(url);
     };
@@ -47,14 +44,10 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Kontrollera om alla fält är ifyllda
     if (!location || !checkInDate || !checkOutDate || adults < 1) {
       setErrorMessage("Du måste fylla i alla fält för att kunna söka boende.");
-      return;  // Avsluta funktionen om valideringen misslyckas
+      return; 
     }
-
-    // Töm felmeddelandet och navigera till searchboende om valideringen lyckas
     setErrorMessage("");
     router.push(`/searchboende?location=${location}&adults=${adults}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`);
   };
@@ -113,7 +106,6 @@ function Home() {
             />
           </div>
         </div>
-
         <div>
           <label htmlFor="adults" className="block text-sm font-medium text-gray-700">ANTAL VUXNA</label>
           <input
@@ -180,7 +172,7 @@ function Home() {
             alt={boende.title}
             width={400}
             height={300}
-            priority={true} // Lägg till detta om den är ovanför "the fold"
+            priority={true} 
             loading="eager"
             unoptimized={true}
             className="rounded-lg object-cover w-full h-auto"
@@ -191,7 +183,6 @@ function Home() {
     </div>
   </section>
 </div>
-
   );
 }
 export default Home;

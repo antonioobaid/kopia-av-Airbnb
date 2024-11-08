@@ -7,15 +7,13 @@ import { db, storage } from "../../../../firebase/config";
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "lucide-react";
 
-
 const BoendeDetalj = ({ params }) => {
   const [boende, setBoende] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null); // Ny state för vald bild
-  const { boendeId } = params; // Få boende ID från params
+  const [selectedImage, setSelectedImage] = useState(null); 
+  const { boendeId } = params; 
   const router = useRouter();
 
-  // Hämta boendeinformation från Firestore baserat på boendeId
   useEffect(() => {
     if (boendeId) {
       const fetchBoendeDetalj = async () => {
@@ -25,8 +23,6 @@ const BoendeDetalj = ({ params }) => {
         if (docSnap.exists()) {
           const boendeData = docSnap.data();
           setBoende(boendeData);
-
-          // Hämta bild-URL
           const imageRefs = boendeData.images.map((imagePath) =>
             ref(storage, imagePath)
           );
@@ -35,7 +31,6 @@ const BoendeDetalj = ({ params }) => {
           );
           setImageUrls(urls);
 
-          // Sätt den första bilden som standardvald bild
           if (urls.length > 0) {
             setSelectedImage(urls[0]);
           }
@@ -43,7 +38,6 @@ const BoendeDetalj = ({ params }) => {
           console.error("Boende finns inte!");
         }
       };
-
       fetchBoendeDetalj();
     }
   }, [boendeId]);
@@ -66,7 +60,6 @@ const BoendeDetalj = ({ params }) => {
                   <h1 className="hidden sm:block text-2xl font-bold mb-6">{boende.title}</h1>
               </div>
               <div className="flex justify-start items-start  ">
-              
               <button
                 className="sm:hidden "
                 onClick={() => router.push("/")}
@@ -79,7 +72,7 @@ const BoendeDetalj = ({ params }) => {
                       alt={boende.title}
                       width={750}
                       height={750}
-                      priority={true} // Lägg till detta om den är ovanför "the fold"
+                      priority={true} 
                       loading="eager"
                       className="rounded-lg mx-3 object-cover 
                                  sm:w-auto sm:h-auto
@@ -94,9 +87,7 @@ const BoendeDetalj = ({ params }) => {
                   <span className="text-yellow-500">★</span>
                   <span className="text-gray-300">★</span>
                 </div>
-              
             </div>
-
           </div>
 
           <div className="hidden sm:flex flex-row lg:flex-col mt-6 lg:mt-14 gap-4">
@@ -129,7 +120,6 @@ const BoendeDetalj = ({ params }) => {
             <p>Daglig Pris: {boende.price} SEK per natt</p>
             <p>månadshyra: {boende.månadshyra} SEK månad</p>
           </div>
-
           <div className="flex justify-center mt-2">
             <button
               className="bg-green-600 rounded-sm p-2 w-full lg:w-32"
