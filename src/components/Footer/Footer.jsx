@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="bg-gray-800 border-t-2 border-green-600 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">    
         <p className="hidden sm:block text-sm">
-          &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+          &copy; {new Date().getFullYear()} Ditt Företag. Alla rättigheter förbehållna.
         </p>
 
         <div className="hidden sm:flex space-x-4">

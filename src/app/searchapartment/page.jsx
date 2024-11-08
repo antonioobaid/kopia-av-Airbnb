@@ -36,8 +36,8 @@ function SearchBoende() {
     fetchBoenden();
   }, [location]);
 
-  const navigateToDetails = (boendeId) => {
-    router.push(`/boendedetalj/${boendeId}`); 
+  const navigateToDetails = (apartmentId) => {
+    router.push(`/apartmentdetails/${apartmentId}`); 
   };
 
   return (

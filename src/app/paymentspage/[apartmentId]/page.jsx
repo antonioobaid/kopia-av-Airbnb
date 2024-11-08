@@ -14,7 +14,7 @@ export default function BetalningPage({ params }) {
     billingAddress: ""
   });
   const [error, setError] = useState("");
-  const { boendeId } = params;
+  const { apartmentId } = params;
   const router = useRouter() 
   const handlePaymentSelect = (paymentMethod) => {
     setSelectedPayment(paymentMethod);
@@ -54,7 +54,7 @@ export default function BetalningPage({ params }) {
       return;
     }
 
-    if (!boendeId) {
+    if (!apartmentId) {
       setError("Boende-ID saknas.");
       return;
     }
@@ -69,7 +69,7 @@ export default function BetalningPage({ params }) {
         timestamp: new Date(),
       });
       console.log("Betalning genomförd!");
-      router.push(`/betalningsidan/betalt/${boendeId}`);
+      router.push(`/paymentspage/paid/${apartmentId}`);
     } catch (error) {
       console.error("Fel vid betalning: ", error);
       setError("Ett fel uppstod vid betalningen. Försök igen.");

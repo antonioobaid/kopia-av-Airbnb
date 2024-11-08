@@ -11,13 +11,13 @@ const BoendeDetalj = ({ params }) => {
   const [boende, setBoende] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null); 
-  const { boendeId } = params; 
+  const { apartmentId } = params; 
   const router = useRouter();
 
   useEffect(() => {
-    if (boendeId) {
+    if (apartmentId) {
       const fetchBoendeDetalj = async () => {
-        const docRef = doc(db, "boende", boendeId);
+        const docRef = doc(db, "boende", apartmentId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -40,14 +40,14 @@ const BoendeDetalj = ({ params }) => {
       };
       fetchBoendeDetalj();
     }
-  }, [boendeId]);
+  }, [apartmentId]);
 
   if (!boende || imageUrls.length === 0) {
     return <div>Loading...</div>;
   }
 
   const BetalningPage = () => {
-    router.push(`/betalningsidan/${boendeId}`);
+    router.push(`/paymentspage/${apartmentId}`);
   };
 
   return (

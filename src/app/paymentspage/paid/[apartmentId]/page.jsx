@@ -5,12 +5,12 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../../../../firebase/config";
 
 export default function Betalt({ params }) {
-  const { boendeId } = params; // Hämta boendeId från URL:en
+  const { apartmentId } = params; // Hämta boendeId från URL:en
   const [firstImageUrl, setFirstImageUrl] = useState(null);
   useEffect(() => {
     const fetchFirstImage = async () => {
-      if (boendeId) {
-        const docRef = doc(db, "boende", boendeId);
+      if (apartmentId) {
+        const docRef = doc(db, "boende", apartmentId);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
@@ -30,7 +30,7 @@ export default function Betalt({ params }) {
       }
     };
     fetchFirstImage();
-  }, [boendeId]);
+  }, [apartmentId]);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">

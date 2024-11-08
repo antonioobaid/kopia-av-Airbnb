@@ -49,12 +49,12 @@ function Home() {
       return; 
     }
     setErrorMessage("");
-    router.push(`/searchboende?location=${location}&adults=${adults}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`);
+    router.push(`/searchapartment?location=${location}&adults=${adults}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`);
   };
 
-  const navigateToDetails = (boendeId) => {
-    if (boendeId) {
-      router.push(`/boendedetalj/${boendeId}`);
+  const navigateToDetails = (apartmentId) => {
+    if (apartmentId) {
+      router.push(`/apartmentdetails/${apartmentId}`);
     } else {
       console.error("Boende ID är inte definierat!");
     }
