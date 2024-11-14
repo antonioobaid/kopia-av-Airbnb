@@ -37,7 +37,6 @@ function Home() {
       const url = await getDownloadURL(mainImageRef);
       setMainImageUrl(url);
     };
-
     fetchBoende();
     fetchMainImage()
   }, []);
